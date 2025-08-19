@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg*
+.eggs/
+.dist-info/
+build/
+dist/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# Virtual envs
+venv/
+.env/
+.venv/
+
+# Secrets & local config
+.env
+*.pem
+*.key
+*.p12
+*.keystore
+*.cert
+*.sqlite
+*.log
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+dependencies/API_Keys.txt
+dependencies/credentials.json
+hyperlinks.db
+dependencies/config.json

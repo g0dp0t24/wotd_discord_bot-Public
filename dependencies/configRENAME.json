@@ -1,0 +1,8 @@
+{
+    "_Comment": "Rename this file to just config.json and edit all these values",
+    "DISCORD_TOKEN": "your_discord_bot_token",
+    "DISCORD_CHANNEL_ID": "your_channel_id",
+    "SPREADSHEET_ID": "your_spreadsheet_id",
+    "OPENAI_KEY": "your_openAI_Key",
+    "DATABASE_PATH": "hyperlinks.db"
+}
