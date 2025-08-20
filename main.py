@@ -14,11 +14,12 @@ logging.basicConfig(filename='data_entryDB.log',
                         format='%(asctime)s - %(levelname)s - %(message)s')
 
 def ensure_db():
-    if not os.path.isfile(DB_PATH):
-        logging.info("No database found. Initializing...")
-        init_db()
+    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hyperlinks.db')
+    if not os.path.exists(db_path):
+        logging.info("Database does not exist, initializing...")
+        init_db(db_path)
     else:
-        logging.info("Database exists at %s", DB_PATH)  
+        logging.info("Database already exists, skipping initialization.")
 
 def setup_scheduler():
     schedule.every().day.at("08:55").do(discord_bot.on_ready())
