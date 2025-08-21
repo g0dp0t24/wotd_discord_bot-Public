@@ -1,7 +1,7 @@
 import sqlite3
 from contextlib import closing
 
-def init_db():
+def init_db(db_path: str) -> None: 
     with closing(sqlite3.connect('hyperlinks.db')) as conn, conn, closing(conn.cursor()) as cursor:
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS hyperlinks (
