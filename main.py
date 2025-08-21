@@ -16,6 +16,7 @@ logging.basicConfig(filename='data_entryDB.log',
 def ensure_db():
     db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hyperlinks.db')
     if not os.path.exists(db_path):
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
         logging.info("Database does not exist, initializing...")
         init_db(db_path)
     else:
