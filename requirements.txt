@@ -1,0 +1,8 @@
+discord.py==2.3.2
+openai
+google-auth==2.29.0
+google-auth-httplib2==0.2.0
+google-api-python-client
+curl-cffi
+beautifulsoup4
+Pillow

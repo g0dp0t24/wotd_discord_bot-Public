@@ -44,6 +44,17 @@ def edit_table():
         cursor.execute(query)
         conn.commit()
 
+def edit_text():
+    with sqlite3.connect(database_path) as conn:
+        cur = conn.cursor()
+        cur.execute("""
+            UPDATE hyperlinks
+            SET text_value = REPLACE(text_value, 'Langourous', 'Languorous')
+            WHERE id = ?
+        """, (362,))
+        print(f"Rows updated: {cur.rowcount}")
+        conn.commit()
+
 if __name__ == "__main__":
     # entry_id_to_delete =   235
     # delete_entry(entry_id_to_delete)
@@ -58,4 +69,4 @@ if __name__ == "__main__":
     #                    "Tithe", 
     #                    "Aggrandize"]
     # update_used_flag(items_to_update)
-    edit_table();
+    edit_text();

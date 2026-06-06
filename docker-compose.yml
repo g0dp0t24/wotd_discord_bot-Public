@@ -1,0 +1,12 @@
+services:
+  wotd-bot:
+    build: .
+    restart: unless-stopped
+    labels:
+      net.unraid.docker.icon: "https://raw.githubusercontent.com/g0dp0t24/wotd_discord_bot/main/dependencies/WOTD_Bot.png"
+    environment:
+      - TZ=America/Los_Angeles
+    volumes:
+      - ./dependencies:/app/dependencies
+      - ./hyperlinks.db:/app/hyperlinks.db
+      - ./data_entryDB.log:/app/data_entryDB.log

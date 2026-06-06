@@ -1,38 +1,29 @@
-import discord_bot
-import schedule
-import time
-import logging
-import os
+import logging, os
+from logging.handlers import RotatingFileHandler
 from database import init_db
 
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(PROJECT_ROOT, "hyperlinks.db")
+def setup_logging():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file = os.path.join(script_dir, 'data_entryDB.log')
 
-logging.basicConfig(filename='data_entryDB.log', 
-                        level=logging.INFO,
-                        format='%(asctime)s - %(levelname)s - %(message)s')
+    file_handler = RotatingFileHandler(
+        log_file,
+        maxBytes=5*1024*1024,
+        backupCount=5,
+        encoding='utf-8'
+    )
 
-def ensure_db():
-    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hyperlinks.db')
-    if not os.path.exists(db_path):
-        os.makedirs(os.path.dirname(db_path), exist_ok=True)
-        logging.info("Database does not exist, initializing...")
-        init_db(db_path)
-    else:
-        logging.info("Database already exists, skipping initialization.")
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - [%(name)s] %(message)s',
+        handlers=[file_handler],
+        force=True
+    )
 
-def setup_scheduler():
-    schedule.every().day.at("08:55").do(discord_bot.on_ready())
-
-    while True:
-        schedule.run_pending()
-        time.sleep(45)
-
-def main():
-    ensure_db()
-    discord_bot.on_ready()
-    # setup_scheduler()
 
 if __name__ == '__main__':
-    main()
+    setup_logging()
+    init_db()
+    from discord_bot import client, DISCORD_TOKEN
+    client.run(DISCORD_TOKEN)

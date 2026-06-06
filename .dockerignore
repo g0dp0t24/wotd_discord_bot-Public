@@ -1,0 +1,8 @@
+venv/
+.git/
+__pycache__/
+*.pyc
+*.db
+*.log
+Old_Files/
+.idea/
